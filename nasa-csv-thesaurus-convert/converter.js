@@ -47,9 +47,9 @@ function convert(data, callback) {
 
     if(thesaurus[key] === undefined) {
       thesaurus[key] = []
-      thesaurus[key].push(tokens[5]);
+      thesaurus[key].push(_scrub(tokens[5]));
     } else {
-      thesaurus[key].push(tokens[5]);
+      thesaurus[key].push(_scrub(tokens[5]));
     }
   }
 
