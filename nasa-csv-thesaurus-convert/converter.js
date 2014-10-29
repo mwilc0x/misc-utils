@@ -1,5 +1,4 @@
 var fs = require('fs'),
-    readline = require('readline'),
     thesaurus = {}
 
 readFile(function() {
@@ -7,8 +6,11 @@ readFile(function() {
 });
 
 
+/**
+* Read in txt file
+*/
 function readFile(callback) {
-  fs.readFile('NASA_Thesaurus_Alpha_CSV.txt', { encoding: 'utf8'}, function(err, data) {
+  fs.readFile('NASA_Thesaurus_Alpha_CSV.txt', { encoding: 'utf16le'}, function(err, data) {
     if(err) {
       console.log(err);
     }
@@ -19,6 +21,9 @@ function readFile(callback) {
   });
 }
 
+/**
+* Write JSON to file
+*/
 function writeFile() {
   var outputFilename = 'thesaurus.json';
 
@@ -31,6 +36,9 @@ function writeFile() {
   });
 }
 
+/**
+* Traverse rows, split and store into object
+*/
 function convert(data, callback) {
   for(var i = 0; i < data.length; i++) {
     var tokens = data[i].split(',');
@@ -48,8 +56,11 @@ function convert(data, callback) {
   callback();
 }
 
+/**
+* Strip whitespace
+*/
 function _scrub(word) {
   if(!word) return;
   word = word.replace(/"/g,'');
-  return(word.toString());
+  return(word);
 }
