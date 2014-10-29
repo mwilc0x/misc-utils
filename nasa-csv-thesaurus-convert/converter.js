@@ -37,8 +37,11 @@ function convert(data, callback) {
 
     var key = _scrub(tokens[1]);
 
-    if(!thesaurus[key]) {
-      thesaurus[key] = _scrub(tokens[5]);
+    if(thesaurus[key] === undefined) {
+      thesaurus[key] = []
+      thesaurus[key].push(tokens[5]);
+    } else {
+      thesaurus[key].push(tokens[5]);
     }
   }
 
